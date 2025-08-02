@@ -82,3 +82,57 @@ Notes
 Reproducibility: The script automatically sorts species by sequence count (descending) and assigns labels.
 
 Integration: Use this CSV as input for statistical analyses or visualizations (e.g., PCA, t-SNE).
+# Comparative Analysis of Regularization Methods
+The script GGAR_MLP_and_Variants.py evaluates six neural network architectures with different regularization strategies for classifying Brassica species based on codon frequencies.
+
+# Key Methods
+GGAR: Gradient-Guided Adaptive Regularizer (novel).
+
+AdaptiveL1L2: Fixed L1 + L2 regularization.
+
+FixedL1/L2/ElasticNet: Standard regularization baselines.
+
+MLP: Deep multilayer perceptron with L2 regularization.
+
+# Workflow
+Input: Preprocessed CSV combined_codon_frequencies_labeled.csv named to a new file with new name "4_Species.csv", by removing column names Species and Sequence_ID and assign Label a new name Species, with codon counts (columns) and species labels (1-4).
+
+# Training:
+
+10-fold cross-validation.
+
+Evaluates multiple learning rates (0.01, 0.001, 0.0001) and batch sizes (32, 64, 128, 256).
+
+Early stopping (patience=10) to prevent overfitting.
+
+# Outputs (per configuration):
+
+Metrics: Accuracy, precision, recall, F1, MCC (based on average of 10 folds train/val/test).
+
+Confusion matrices: PNG files.
+
+Best model: Saved as .h5 file.
+
+Training logs: Fold-wise metrics and timing.
+
+# Example Output Structure
+results/
+├── lr_0_001_bs_64/
+│   ├── results_GGAR/
+│   │   ├── Best_Model_Metrics.csv
+│   │   ├── Confusion_Matrix.png
+│   │   └── (other metrics CSVs)
+│   └── (other methods...)
+└── (other hyperparameter combinations...)
+# Usage
+1. Configure paths in the script:
+   DATA_PATH = 'path/to/4_Species.csv'  # Input CSV
+BASE_DIR = 'path/to/results'         # Output directory
+2. Run
+   python GGAR_MLP_and_Variants.py
+  #  Dependencies
+Python 3.x
+
+TensorFlow 2.x
+
+Pandas, NumPy, Scikit-learn, Matplotlib, Seaborn
