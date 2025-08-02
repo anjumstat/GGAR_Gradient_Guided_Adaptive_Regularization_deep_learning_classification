@@ -199,6 +199,51 @@ Learning_Rate	Batch_Size	Metric	Best_Method	p_value	Significant
 0.001	64	Test_Accuracy	GGAR	0.003	True
 # Purpose
 Quantifies significant performance differences between regularization strategies.
+# Training Dynamics Visualization
+The script Plots_Accuracy_Loss.py generates comparative plots of training/validation metrics across all regularization methods (GGAR, AdaptiveL1L2, etc.) for a specific hyperparameter combination (LR=0.0001, BS=32), Note: you can draw for any learning rate and batch size by changing the name of the input folder.
+
+# Key Features
+Input: Loads fold-wise training histories from results/lr_0_0001_bs_32/.
+
+# Output:
+
+Figure 3 (Manuscript): Training  validation accuracy and loss curves.
+
+Figure 4 (Manuscript): Training validation accuracy and loss curves.
+
+Saves as training_dynamics.png with:
+
+Mean trajectories (solid lines) ± 1 standard deviation (shaded regions).
+
+Consistent color-coding across methods.
+
+# Usage
+Ensure GGAR_MLP_and_Variants.py has been executed for the target hyperparameters.
+
+Run:
+
+bash
+python Plots_Accuracy_Loss.py  
+Note: Configure BASE_DIR in the script if analyzing other LR/BS combinations.
+
+# Visualization Details
+Methods:
+
+GGAR (red), AdaptiveL1L2 (green), FixedL1 (blue), FixedL2 (orange), ElasticNet (purple), MLP (cyan).
+
+# Metrics:
+
+Smoothed curves (edge padding for consistent epoch lengths).
+
+Standard deviation bands from 10-fold cross-validation.
+
+# Example Output
+https://results/lr_0_0001_bs_32/training_dynamics.png
+
+# Dependencies
+Python 3.x
+
+Matplotlib, Seaborn, NumPy
 
 Guides hyperparameter selection by identifying robust configurations.
 
