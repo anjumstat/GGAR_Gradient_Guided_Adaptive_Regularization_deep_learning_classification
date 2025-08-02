@@ -284,4 +284,39 @@ Modify colors, line_styles, or markers in the script for visual tweaks.
 Python 3.x
 
 Matplotlib, Pandas, NumPy
+# Over fitting Landscape Dynamics Analysis
+The script Gradient_Sharpness_Analysis.py generates Figures 6 and 7 of the manuscript, analyzing training dynamics through:
 
+Gradient Norms (|∂Loss/∂θ|): Stability of optimization.
+
+Solution Sharpness (|∂²Loss/∂θ²|): Flatness of converged minima.
+
+# Key Features
+Input: Processes fold-wise training losses from all hyperparameter combinations (lr_*_bs_*/).
+
+# Visualizations:
+
+Figure 6: Gradient norm trajectories across epochs (rows: learning rates, colors: methods, linestyles: batch sizes).
+
+Figure 7: Sharpness boxplots (rows: learning rates, colors: methods, grouped by batch size).
+
+Output: High-res PNGs (gradient_norms_by_lr.png, sharpness_by_lr.png) saved to GGAR_combined/consolidated_analysis/.
+
+# Usage
+python Gradient_Sharpness_Analysis.py  
+# Prerequisites:
+Ensure all model training directories (e.g., lr_0_001_bs_32/) exist.
+# Design Details
+Color Coding: Consistent with prior plots (GGAR: purple, MLP: brown, etc.).
+
+Line Styles: Batch sizes (-=32, --=64, etc.).
+
+Statistics: Mean gradient norms ± variance; sharpness distributions across folds.
+
+# Example Outputs
+Figure 6: Gradient Norms	Figure 7: Sharpness
+
+# Dependencies
+Python 3.x
+
+Matplotlib, NumPy
