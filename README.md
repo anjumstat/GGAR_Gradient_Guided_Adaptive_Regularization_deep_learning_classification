@@ -168,4 +168,38 @@ results/
 Enables batch analysis of all models (e.g., comparing GGAR vs baselines across hyperparameters).
 
 Eliminates manual CSV merging for large-scale experiments.
+# Statistical Comparison of Regularization Methods
+The script Anova_Kruskal_Wallis.py performs comprehensive statistical comparisons across all trained models (GGAR vs baselines) using:
+
+ANOVA (for normally distributed data with equal variances)
+
+Kruskal-Wallis (non-parametric alternative)
+
+# Key Features
+Input: Uses combined metrics from results/Combined_CSVs/Fold_Metrics_Detailed.csv.
+
+# Tests:
+
+Checks normality (Shapiro-Wilk) and homogeneity of variance (Levene’s test).
+
+Identifies the best-performing method per metric (accuracy/precision/recall/F1/MCC) for each hyperparameter combination.
+
+# Output: Saves results to Comparison_ANOVA_Kruskal.csv with columns:
+
+Learning_Rate, Batch_Size, Metric (e.g., Test_Accuracy).
+
+Best_Method, p_value, Significant (p < 0.05).
+
+Mean differences between top methods.
+# Useage
+python Anova_Kruskal_Wallis.py  
+Prerequisites: Ensure combine_csvs.py has generated the input CSV.
+# Example Output
+Learning_Rate	Batch_Size	Metric	Best_Method	p_value	Significant
+0.001	64	Test_Accuracy	GGAR	0.003	True
+# Purpose
+Quantifies significant performance differences between regularization strategies.
+
+Guides hyperparameter selection by identifying robust configurations.
+
 
