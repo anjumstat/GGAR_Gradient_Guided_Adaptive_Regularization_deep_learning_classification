@@ -1,4 +1,4 @@
-# GGAR-Gradient-Guided-Adaptive-Regularization--deep-learning---classification-
+# GGAR: GGAR: Gradient-Guided Adaptive Regularization Enhances Deep Learning Classification of Brassica Species Using Codon Usage Bias
 # CDS Filtering Pipeline for Brassica Species
 This repository contains a Python script (CDS_Data_Validation.py) to filter coding sequences (CDS) from four Brassica species (B. juncea, B. napus, B. oleracea, B. rapa) downloaded from EnsemblPlants (release-61). The script validates FASTA-formatted CDS against strict biological criteria:
 
